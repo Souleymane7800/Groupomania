@@ -1,0 +1,185 @@
+@media only screen and (min-width : 1224px) {
+      
+}
+.mainContainerForSignup {
+      background-color: #FFD7D7;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+}
+
+.submainContainer {
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      gap: 100px;
+}
+
+.loginLeft {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 500px;
+      background-color: white;
+      border-radius: 15px;
+}
+
+.loginRight {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      height: 500px;
+      border-radius: 15px;
+}
+/* .logoText {
+      font-size: 40px;
+      text-align: start;
+      margin-top: 0px;
+} */
+
+.introText {
+      font-size: 24px;
+      /* text-align: start; */
+      margin-top: 20px;
+      margin-left: 5px;
+}
+
+.createAccountText {
+      font-size: 22px;
+      margin-top: 10px;
+      text-align: start;
+      margin-left: 30%;
+}
+
+.inputText {
+      display: flex;
+      margin-left: 30%;
+      width: 40%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+}
+
+.btnForSignup {
+      margin-left: 6%;
+      margin-top: 10px;
+      border-radius: 10px;
+      /* padding-left: 180px;
+      padding-right: 202px; */
+      align-self: center;
+      width: 55%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      cursor: pointer;
+      border: none;
+}
+
+.btnForSignup:hover{
+      background-color: #FD2D01;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      /* .App {
+            width: 95%;
+      } */
+      .body {
+            margin: 0;
+            width: 100%;
+      }
+      .mainContainerForSignup {
+            /* display: flex; */
+            align-items: center;
+            /* flex-direction: column; */
+            /* width: 100%; */
+            /* height: 100vh; */
+      }
+      .submainContainer {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            /* height: auto; */
+            gap: 30px;
+            padding-top: 0px;
+      }
+      .loginLeft {
+            width: 90%;
+            align-items: center;
+      }
+      .loginLeft>img {
+            width: 220px;
+            margin-top: 15px;
+      }
+      .introText {
+            font-size: 15px;
+      }
+      .createAccountText2 {
+            font-size: 20px;
+            margin-top: 15px;
+            /* text-align: start; */
+            margin-left: 10px;
+            margin-right: 10px;
+      }
+      .loginRight>a {
+            margin-left: 5px;
+            margin-right: 5px;
+      }
+      .inputText {
+            align-items: center;
+            display: flex;
+            justify-content: center;margin-left: 25%;
+      }
+      .btnForSignup {
+            margin-left: 0%;
+            margin-top: 10px;
+            border-radius: 10px;
+            /* padding-left: 180px;
+            padding-right: 202px; */
+            align-self: center;
+            width: 60%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            cursor: pointer;
+            border: none;
+      }
+      .btnForSignup:hover{
+            background-color: #FD2D01;
+      }
+}
+
+/* Tablette */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1023px) {
+      .submainContainer {
+            display: flex;
+            gap: 50px;
+      }
+      .loginLeft {
+            width: 50%;
+            align-items: center;
+            height: 300px;
+            margin-left: 20px;
+            margin-top: 50px;
+      }
+      .loginLeft>img {
+            width: 220px;
+            margin-top: 15px;
+      }
+      .introText {
+            font-size: 17px;
+      }
+      .loginRight {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            height: 300px;
+            border-radius: 15px;
+            margin-top: 50px;
+      }
+
+}
