@@ -41,7 +41,7 @@
 
 }
 
-.addCommentbtn{
+.addCommentbtn {
       padding: 9px;
       border: none;
       background-color: black;
@@ -51,4 +51,30 @@
       cursor: pointer;
       padding-left: 40px;
       padding-right: 40px;
+}
+
+.editIcon {
+      display: flex;
+      align-items: center;
+      margin-left: 200px;
+      cursor: pointer;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      .editIcon {
+            margin-left: 0;
+      }
+      .editIcon>a {
+            margin-left: 50px;
+      }
+      .addCommentbtn {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 5px;
+      }
+      .SubPostContainer {
+            margin-left: 10px;
+      }
+
 }

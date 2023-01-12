@@ -33,6 +33,12 @@
       height: 20px;
       margin-left: 20px;
 }
+
+.IconsLogout {
+      width: 30px;
+      height: 30px;
+}
+
 .searchIcon{
       width: 20px;
       height: 20px;
@@ -51,5 +57,93 @@
       padding: 4px;
       border-radius: 10px;
       background-color: rgb(224, 228, 232);
+}
+
+.IconsContainer>a>div>p {
+      color: black;
+}
+
+.navbarLogout {
+      margin-right: 50px;
+      margin-left: 25px;
+      cursor: pointer;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      .mainNavbar {
+            display: flex;
+            width: 82%;
+            border-radius: 0;
+            
+      }
+      /* .searchNavbar {
+            margin-left: 10px;
+      } */
+      .searchInputContainer{
+            width: 180px;
+            margin-top: 2px;
+            padding: 3px;
+            width: 165px;
+      }
+      .searchIcon {
+            width: 15px;
+            height: 15px;
+            margin-right: 3px;
+      }
+      .searchInput {
+            font-size: 11px;
+            padding: 0;
+            width: 10pc;
+            
+      }
+      .IconsContainer {
+            height: 32px;
+      }
+      .IconsContainer>a>div>p {
+            font-size: 13px;
+      }
+      .Icons {
+            width: 15px;
+            height: 15px;
+            margin-left: 10px;
+      }
+      .ProfileImage {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+      }
+      .LogoContainer>a>img{
+            margin-left: 3px;
+            margin-right: 5px;
+            width: 70px;
+            height: 30px;
+      }
+      .navbarLogout {
+            margin-right: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+      }
+      .IconsLogout {
+            width: 25px;
+            height: 25px;
+      }
+      /* .mainPostContainer {
+            width: 100%;
+      }
+      .PostContainer {
+            width: 100%;
+      }
+      .ComponentContainer {
+            width: 95%;
+      } */
+      /* .SubPostContainer>div>img {
+            width: 300px;
+            height: 250px;
+      }
+      .ContentUploadContainer>div>div>img {
+            width: 300px;
+            height: 250px;
+      } */
 }
 

@@ -206,7 +206,7 @@ function UpdatePost() {
             <div className="updateContainer">
                   <h2>Modifier votre post</h2>
                   <textarea type="text" 
-                  value={currentTitle} onChange={changeTitle}
+                  placeholder={currentTitle} onChange={changeTitle}
                   />
                   <div style={{ marginLeft: "10px" }}></div>
                   {currentVideo || videoPrev || imagePrev || currentImage !== null ? 

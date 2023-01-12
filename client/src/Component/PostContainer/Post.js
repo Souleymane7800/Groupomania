@@ -142,7 +142,7 @@ export default function Post({post}) {
                 <p style={{ marginLeft: "6px" }}>{Comments.length} Comments</p>
               </div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", marginLeft:200, cursor: "pointer" }}>
+            <div className="editIcon" title="Modifier">
                 {/* <img src={`${ShareIcon}`} className="iconsForPost" alt='' />
                 <p style={{ marginLeft: "6px" }}>Partager</p> */}
                 {displayButtons && 

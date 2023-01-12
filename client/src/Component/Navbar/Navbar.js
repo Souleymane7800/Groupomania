@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../ReduxContainer/userReducer';
 import logo from "../../Component/Images/logo.png";
+import logout1 from "../Images/logout-1.png";
+import logoutOver from "../Images/logout-2.png";
 
 
 
@@ -31,7 +33,7 @@ export default function Navbar() {
             </Link>
       </div>
       {/* Barre de recherche */}
-      <div>
+      <div className="searchNabar">
             <div className="searchInputContainer">
                   <img src={`${searchIcon}`} className="searchIcon" alt="" />
                   <input type="text" className="searchInput" placeholder="Retrouver vos collaborateurs" name="" id="" />
@@ -47,8 +49,10 @@ export default function Navbar() {
                         <p style={{ marginLeft: "5px"}}>{user.others.username}</p>
                   </div>
             </Link>
-            <div style={{ marginRight: "20px", marginLeft: "20px", cursor: "pointer" }} onClick={handleLogout}>
-                  <p>Logout</p>
+            {/* Icone logout */}
+            <div className="navbarLogout" onClick={handleLogout}>
+                  <img src={`${logout1}`} onMouseOver={e => (e.currentTarget.src = logoutOver)} 
+                        onMouseOut={e => (e.currentTarget.src = logout1)} title="Se déconnecter" className="IconsLogout" alt="Se déconnecter" />
             </div>
       </div>
     </div>

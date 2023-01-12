@@ -32,7 +32,7 @@ export default function Login() {
           <input type="password" placeholder="Mot de passe" name="" id="password" onChange={(e) => setPassword(e.target.value)} className="inputText" />
           <button className="btnForSignup" onClick={handleClick}>Se connecter</button>
           <Link to={"/signup"} style={{ textDecoration:"none" }}>
-            <p>Vous n'avez pas de compte ?</p>
+            <p style={{ color: "red"}}>Vous n'avez pas de compte ?</p>
           </Link>
           {/* <Link to={"/signup"} style={{ textDecoration:"none" }}>
             <p>Mot de passe oublié ?</p>

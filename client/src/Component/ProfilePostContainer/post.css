@@ -52,3 +52,12 @@
       padding-left: 40px;
       padding-right: 40px;
 }
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      .addCommentbtn {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 5px;
+      }
+}

@@ -1,6 +1,6 @@
 .Leftbar{
       flex: 1;
-      margin-top: 55px;
+      margin-top: 20px;
 }
 .NotificationsContainer{
       width: 18pc;
@@ -40,4 +40,11 @@
       object-fit: cover;
       border-radius: 4px;
       margin-top: 6px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      .NotificationsContainer {
+            display: none;
+      }
 }

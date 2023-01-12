@@ -11,6 +11,7 @@
 
 .updateContainer>textarea {
       width: 350px;
+      border-radius: 4px;
 }
 .updateContainer {
       display: flex;
@@ -19,7 +20,7 @@
       width: 800px;
       height: 600px;
       align-self: start;
-      border: 2px solid blue;
+      border: 2px solid #FFD7D7;
 }
 
 .update-btn {
@@ -28,27 +29,22 @@
       width: 30%;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 10px;
+      margin-top: 10px;
 }
-.SubPostContainer{
+/* .SubPostContainer{
       width: 93%;
       background-color: white;
       margin-top: 20px;
       margin-left: 20px;
       border-radius: 10px;
-}
+} */
 
 .PostImage{
       width: 40px;
       height: 40px;
       border-radius: 50%;
       margin-left: 10px;
-}
-
-.PostImages{
-      width: 500px;
-      height: 450px;
-      object-fit: cover;
-      border-radius: 10px;
 }
 
 .iconsForPost{
@@ -61,21 +57,6 @@
       margin-left: 380px;
 }
 
-/* .commentInput{
-      width: 24pc;
-      margin-left: 10px;
-      border: none;
-
-} */
-
-/* .addCommentbtn{
-      padding: 9px;
-      border: none;
-      background-color: black;
-      color: white;
-      border-radius: 6px;
-      margin-left: 39px;
-      cursor: pointer;
-      padding-left: 40px;
-      padding-right: 40px;
-} */
+@media only screen and (max-width: 767px) {
+      
+}

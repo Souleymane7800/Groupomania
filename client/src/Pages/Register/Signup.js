@@ -72,13 +72,15 @@ export default function Signup() {
         </div>
         <div className="loginRight">
           <p className="createAccountText2" >Créer un nouveau compte</p>
-          <input type="file" name="file" id="file"  onChange={(e) => setFile(e.target.files[0])} />
+          <label  style={{border: "1px solid black", width: "50%", display: "contents"}}>Image de profil
+            <input className="inputText"  type="file" name="file" id="file" style={{ display: "none"}}  onChange={(e) => setFile(e.target.files[0])} />
+          </label>
           <input type="text" placeholder="Pseudo" className="inputText" onChange={(e) => setUsername(e.target.value)} />
           <input type="email" placeholder="email" name="" id="" onChange={(e) => setEmail(e.target.value)} className="inputText" />
           <input type="password" placeholder="Mot de passe" name="" id="" onChange={(e) => setPassword(e.target.value)} className="inputText" />
           <button className="btnForSignup" onClick={handleClick}>S'enregistrer</button>
           <Link to={"/login"} style={{ textDecoration:"none" }}>
-            <p>Vous avez déjà un compte</p>
+            <p style={{ color: "red"}}>Vous avez déjà un compte ?</p>
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./leftbar.css";
-import image from "../Images/random-user.png";
+// import image from "../Images/random-user.png";
 // import image1 from "../Images/image1.jpg";
 // import image2 from "../Images/image2.jpg";
 // import image3 from "../Images/image3.jpg";

@@ -34,3 +34,38 @@
       width: 24px;
       height: 24px;
 }
+
+.imagePrev>img {
+      width: 410px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+      
+      
+      /* .mainPostContainer {
+            width: 100%;
+      }
+      .PostContainer {
+            width: 100%;
+      }
+      .ComponentContainer {
+            width: 95%;
+      }*/
+      .ContentUploadContainer {
+            width: 94%;
+            margin-left: 16px;
+      }
+      .imagePrev {
+            margin-right: 5px;
+      }
+      .imagePrev>img {
+            width: 275px;
+            height: 200px;
+            object-fit: cover;
+      }
+      
+}

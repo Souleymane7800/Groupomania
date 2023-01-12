@@ -146,8 +146,8 @@ export default function ContentPost() {
           <img src={`${user?.others?.profile}`} className="profileImage" alt='' />
           <input type="text" className="contentWritingpart" placeholder={"A quoi pensez-vous " + user?.others?.username + " ?"} onChange={(e) => setTitle(e.target.value)} />
         </div>
-        <div style={{ marginLeft: "10px" }}>
-          {imagePrev !== null ? <img src={imagePrev} style={{ width:"410px", height:"250px", objectFit:"cover", borderRadius:"10px" }} alt="" /> : videoPrev !== null ? <video className="PostImages" width="500" height="350" controls><source src={videoPrev} type="video/mp4"/></video> 
+        <div className="imagePrev" style={{ marginLeft: "10px" }}>
+          {imagePrev !== null ? <img src={imagePrev}  alt="" /> : videoPrev !== null ? <video className="PostImages" width="500" height="350" controls><source src={videoPrev} type="video/mp4"/></video> 
             : ''
           }
           <div style={{ display:"flex", justifyContent:"space-between" }}>
