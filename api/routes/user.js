@@ -11,6 +11,7 @@ const Post = require("../models/Post");
 const result = dotenv.config();
 
 // Créer un utilisateur...email unique dans la BD et password 6 caractères minimum et username min 4 caractères
+// => /api/user/create/user
 router.post("/create/user", 
       body("email").isEmail(), 
       body("password").isLength({ min: 6}),
@@ -30,6 +31,7 @@ router.post("/create/user",
             const salt = await bcrypt.genSalt(10);
             const hashpassword = await bcrypt.hash(req.body.password, salt)
 
+            // Creation du user dans la BD
             user = await User.create({
                   username:req.body.username,
                   email:req.body.email,
@@ -52,7 +54,7 @@ router.post("/create/user",
 })
 
 
-// Login
+// Login => /api/user/login
 router.post("/login",
       body("email").isEmail(), 
       body("password").isLength({ min: 6}),
@@ -62,9 +64,7 @@ router.post("/login",
                   return res.status(400).json("Une erreur est survenue !")
             }
 
-            try {
-                  
-            
+            try {            
 
             const user = await User.findOne({email: req.body.email});
             if(!user){
@@ -76,7 +76,7 @@ router.post("/login",
             if(!comparePassword){
                   return res.status(400).json("Mauvais mot de passe !")
             }
-            // 
+            
             const accessToken = jwt.sign({
                   id: user._id,
                   username: user.username
@@ -91,7 +91,7 @@ router.post("/login",
 })
 
 
-// Following
+// Following => /api/user/following/:id
 router.put("/following/:id", verifyToken, async(req, res) => {
       if(req.params.id !== req.body.user){
             const user = await User.findById(req.params.id);
@@ -108,11 +108,10 @@ router.put("/following/:id", verifyToken, async(req, res) => {
             }
       } else {
             return res.status(400).json("Vous ne pouvez pas vous suivre !")
-
       }
 })
 
-// Fetch post from following
+// Fetch post from following => /api/user/flw/:id
 router.get("/flw/:id", verifyToken, async(req, res) => {
       try {
             const user = await User.findById(req.params.id);
@@ -129,30 +128,30 @@ router.get("/flw/:id", verifyToken, async(req, res) => {
       }
 })
 
-// Update User Profile
+// Update User Profile => /api/user/update/:id
 router.put("/update/:id", verifyToken, async(req, res) => {
       
       try {
-                  if(req.params.id === req.user.id){
-                        if(req.body.password){
-                              const salt = await bcrypt.genSalt(10);
-                              const hashpassword = await bcrypt.hash(req.body.password, salt);
-                              req.body.password = hashpassword;
-                              const updateUser = await User.findByIdAndUpdate(req.params.id, {
-                                    $set: req.body
-                              });
-                              await updateUser.save();
-                              res.status(200).json(updateUser);
-                        }
-                  } else {
-                        return res.status(400).json("Vous n\'êtes pas authorisé à modifier cet utilisateur !")
+            if (req.params.id === req.user.id) {
+                  if (req.body.password) {
+                        const salt = await bcrypt.genSalt(10);
+                        const hashpassword = await bcrypt.hash(req.body.password, salt);
+                        req.body.password = hashpassword;
+                        const updateUser = await User.findByIdAndUpdate(req.params.id, {
+                              $set: req.body
+                        });
+                        await updateUser.save();
+                        res.status(200).json(updateUser);
                   }
-                  } catch (error) {
-                        return res.status(500).json("Une erreur est survenue !")
-                  }
+            } else {
+                  return res.status(400).json("Vous n\'êtes pas authorisé à modifier cet utilisateur !")
+            }
+      } catch (error) {
+            return res.status(500).json("Une erreur est survenue !")
+      }
 })
 
-// Delete User Account
+// Delete User Account => /api/user/delete/:id
 router.delete("/delete/:id", verifyToken, async(req, res) => {
       try {
             if(req.params.id !== req.user.id){
@@ -166,7 +165,7 @@ router.delete("/delete/:id", verifyToken, async(req, res) => {
       }
 })
 
-// Get user details for post
+// Get user details for post => /api/post/user/details/:id
 router.get("/post/user/details/:id", async(req, res) => {
       try {
            const user = await User.findById(req.params.id);
@@ -180,7 +179,7 @@ router.get("/post/user/details/:id", async(req, res) => {
       }
 })
 
-// Get user to follow
+// Get user to follow => /api/all/user/:id
 router.get("/all/user/:id", async (req, res) => {
       try {
             const allUser = await User.find();

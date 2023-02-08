@@ -13,7 +13,6 @@ export default function ProfileLeftbar() {
       let user = userDetails.user;
       const [ Follow, setUnFollow ] = useState([user.others.Following.includes(id) ? "Unfollow" : "Follow"]);
       const accessToken = user.accessToken;
-      // let username = user?.others?.username;
       console.log(accessToken);
       
       // On récupère les informations des autres users(image,title...)
@@ -33,7 +32,7 @@ export default function ProfileLeftbar() {
       // Compteur de Followers et de Following
       let followersCounter = users?.Followers?.length;
       let followingCounter = users?.Following?.length;
-      console.log(users)
+      console.log(users)//test
 
       const [ FollowingUser, setFollowingUser ] = useState([]);
       useEffect(() => {
@@ -56,6 +55,7 @@ export default function ProfileLeftbar() {
                         token:accessToken},
                         body:JSON.stringify({user:`${user.others._id}`})})
                   setUnFollow("UnFollow");
+                  
             } else {
                   await fetch(`http://localhost:5000/api/user/following/${id}`, {
                         method: "PUT",

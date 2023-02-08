@@ -3,7 +3,6 @@ import "./contentPost.css";
 import imageIcon from "../Images/gallery.png";
 import emojiIcon from "../Images/cat-face.png";
 import VideoIcon from "../Images/video.png";
-// import profileimage from "../Images/Profile.png";
 import { useSelector } from 'react-redux';
 import app from '../../firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -135,8 +134,6 @@ export default function ContentPost() {
                   window.location.reload(true)
                 })
         }
-
-    
   }
 
   return (
@@ -151,7 +148,6 @@ export default function ContentPost() {
             : ''
           }
           <div style={{ display:"flex", justifyContent:"space-between" }}>
-
           
           <div>
             <label htmlFor="file">
@@ -167,7 +163,6 @@ export default function ContentPost() {
             <button style={{ height:"30px", marginRight:"12px", marginTop:"40px", paddingLeft: "20px", 
               paddingRight: "20px", paddingTop:6, paddingBottom:6, border: "none", 
               backgroundColor: "black", color: "white", borderRadius: "5px", cursor: "pointer" }} onClick={handlePost}>Post</button>
-
         </div>
         </div>
       </div>

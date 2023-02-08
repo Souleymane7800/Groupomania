@@ -1,6 +1,5 @@
 // import axios from 'axios';
 import "./updatePost.css"
-// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,12 +13,9 @@ import VideoIcon from "../../Component/Images/video.png";
 function UpdatePost() {
       
       let {id} = useParams();
-      console.log("idPPPPParaaaaaaams",id)
       const userDetails = useSelector((state) => state.user);
       let user = userDetails?.user;
-      console.log("userrrrrrrdetailss",user);
       const accessToken = user.accessToken;
-      console.log("tokeeeeeeennnnnnn", accessToken)
       let navigate = useNavigate();
       const [ currentPost, setCurrentPost ] = useState([]);
       const [ currentTitle, setCurrentTitle ] = useState([]);
@@ -188,10 +184,10 @@ function UpdatePost() {
                 },
                 // body:
                 // JSON.stringify({title:currentTitle, video:currentVideo, image:currentImage}),
-              
-
               })
-               await res.json()
+
+              await res.json()
+
             } catch (error) {
               console.log(error)
             }

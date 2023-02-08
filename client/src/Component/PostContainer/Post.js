@@ -54,6 +54,7 @@ export default function Post({post}) {
   // Ajouter ou enlever son like au click
   const handleLike = async () => {
     if(Like === LikeIcon) {
+
       await fetch(`http://localhost:5000/api/post/${post._id}/like`,{
         method: "PUT",
         headers:{
@@ -63,7 +64,9 @@ export default function Post({post}) {
       })
       setLike(anotherlikeicon);
       setCount(count + 1);
+
     } else {
+
       await fetch(`http://localhost:5000/api/post/${post._id}/like`,{
         method: "PUT",
         headers:{
@@ -99,11 +102,11 @@ export default function Post({post}) {
     addComment();
   }
 
-  // console.log(Comments)
   // Câcher ou montrer les commentaires au click sur icone commentaires
   const handleShow = () => {
     if(show === false){
       setShow(true)
+
     } else {
       setShow(false)
     }
@@ -151,13 +154,10 @@ export default function Post({post}) {
                       <Link to={"/update/post/" + post._id} state={{postId: postId}} >
                         <img className="iconsForPost" src={editicon} alt="edit" />
                       </Link>
-                    // </div>
-                    // {/* <button>Delete</button> */}
-                  // </div>
-                
-                }
-              </div>
+              }
+            </div>
           </div>
+
           {/* Montrer et ajouter un commentaire sous le post */}
           {show === true ?
           <div style={{ padding: "10px" }}>
@@ -175,7 +175,6 @@ export default function Post({post}) {
                 <p style={{ marginLeft: "54px", textAlign: "start", marginTop:-16 }}>{item.comment}</p>
                 <p style={{ marginLeft: "54px", textAlign: "start", marginTop:-10, color:"#aaa", fontSize:11 }}>Répondre</p>
               </div>
-
             ))}
           </div>:""
            }

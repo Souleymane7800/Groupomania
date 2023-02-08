@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const result = dotenv.config();
 
+// Vérification du token pour avoir accès aux fonctionnalitées du site
 const verifyToken = (req, res, next) => {
       const authHeader = req.headers.token;
       if(authHeader){

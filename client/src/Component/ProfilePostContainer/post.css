@@ -1,7 +1,3 @@
-/* .PostContainer {
-
-} */
-
 .SubPostContainer{
       width: 93%;
       background-color: white;
@@ -59,5 +55,9 @@
             padding-left: 10px;
             padding-right: 10px;
             margin-left: 5px;
+      }
+      .PostImages {
+            width: 200px;
+            height: 200px;
       }
 }

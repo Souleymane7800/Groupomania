@@ -3,15 +3,12 @@ import "./navbar.css";
 import searchIcon from "../Images/search.png";
 import Notification from "../Images/bell.png";
 import Message from  "../Images/message.png";
-// import ProfileImage from "../Images/Profile.png";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../ReduxContainer/userReducer';
 import logo from "../../Component/Images/logo.png";
 import logout1 from "../Images/logout-1.png";
 import logoutOver from "../Images/logout-2.png";
-
-
 
 export default function Navbar() {
       const userDetails = useSelector((state) => state.user);
@@ -33,7 +30,7 @@ export default function Navbar() {
             </Link>
       </div>
       {/* Barre de recherche */}
-      <div className="searchNabar">
+      <div className="searchNavbar">
             <div className="searchInputContainer">
                   <img src={`${searchIcon}`} className="searchIcon" alt="" />
                   <input type="text" className="searchInput" placeholder="Retrouver vos collaborateurs" name="" id="" />

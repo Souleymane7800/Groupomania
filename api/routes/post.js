@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 const { verifyToken } = require("./verifytoken.js");
 
-//Create Post
+//Create Post => /api/post/user/post
 router.post("/user/post" , verifyToken , async(req , res, next)=>{
           try {
                    let {title , image , video} = req.body;
@@ -17,7 +17,7 @@ router.post("/user/post" , verifyToken , async(req , res, next)=>{
           }
 })
 
-// Get all posts
+// Get all posts => /api/post/allposts
 router.get("/allposts", verifyToken, async(req, res)=> {
       try {
             Post.find().then(
@@ -30,7 +30,7 @@ router.get("/allposts", verifyToken, async(req, res)=> {
       }
 })
 
-// Get a post
+// Get a post => /api/post/:id
 router.get("/:id", async (req, res) => {
       try {
             const post = await Post.findById(req.params.id);
@@ -40,39 +40,39 @@ router.get("/:id", async (req, res) => {
       }
  });
 
-//upload post by one user
+//upload post by one user => /api/post/get/post/:id
 router.get("/get/post/:id", async(req , res)=>{
-          try {
-                   const mypost = await Post.find({user:req.params.id});
-                   if(!mypost){
-                    return res.status(200).json("Vous n'avez aucun post !")
-                   }
+      try {
+            const mypost = await Post.find({ user: req.params.id });
+            if (!mypost) {
+                  return res.status(200).json("Vous n'avez aucun post !")
+            }
 
-                   res.status(200).json(mypost)
-          } catch (error) {
-                res.status(500).json("Une erreur est survenue !")    
-          }
+            res.status(200).json(mypost)
+      } catch (error) {
+            res.status(500).json("Une erreur est survenue !")
+      }
 })
 
-//update user post
+//update user post => /api/post/update/post/:id
 router.put("/update/post/:id" , verifyToken , async(req ,res)=>{
-          try {
-                   let post = await Post.findById(req.params.id);
-                   if(!post){
-                    return res.status(400).json("Aucun post n'a été trouvé")
-                   };
-                   
-                   post = await Post.findByIdAndUpdate(req.params.id , {
-                    $set:req.body
-                   },{returnDocument:"after"})
-                   let updatepost = await post.save();
-                   res.status(200).json(updatepost);
-          } catch (error) {
-                   return res.status(500).json("Une erreur est survenue !") 
-          }
+      try {
+            let post = await Post.findById(req.params.id);
+            if (!post) {
+                  return res.status(400).json("Aucun post n'a été trouvé")
+            };
+
+            post = await Post.findByIdAndUpdate(req.params.id, {
+                  $set: req.body
+            }, { returnDocument: "after" })
+            let updatepost = await post.save();
+            res.status(200).json(updatepost);
+      } catch (error) {
+            return res.status(500).json("Une erreur est survenue !")
+      }
 })
 
-// Like
+// Like => /api/post/:id/like
 router.put("/:id/like" ,verifyToken, async(req , res)=>{
       try {
             const post = await Post.findById(req.params.id);
@@ -93,28 +93,26 @@ router.put("/:id/like" ,verifyToken, async(req , res)=>{
       }
 })
 
-//Dislike
+//Dislike => /api/post/:id/dislike
 router.put("/:id/dislike" ,verifyToken, async(req , res)=>{
       try {
             const post = await Post.findById(req.params.id);
-            if(!post.dislike.includes(req.user.id)){
-                  if(post.like.includes(req.user.id)){
-                        await post.updateOne({$pull:{like:req.user.id}})
+            if (!post.dislike.includes(req.user.id)) {
+                  if (post.like.includes(req.user.id)) {
+                        await post.updateOne({ $pull: { like: req.user.id } })
                   }
-                  await post.updateOne({$push:{dislike:req.user.id}})
+                  await post.updateOne({ $push: { dislike: req.user.id } })
                   return res.status(200).json("Vous n'aimez pas ce post !")
-            }else{
-                  await post.updateOne({$pull:{dislike:req.user.id}});
+            } else {
+                  await post.updateOne({ $pull: { dislike: req.user.id } });
                   return res.status(200).json("Le post n'est plus aimé !")
             }
-            
       } catch (error) {
             return res.status(500).json("Une erreur est survenue !")
       }
-
 })
 
-//Comment 
+//Comment => /api/post/comment/post
 router.put("/comment/post" , verifyToken , async(req , res)=>{
       // try {
             const {comment , postid , profile} = req.body;
@@ -133,7 +131,7 @@ router.put("/comment/post" , verifyToken , async(req , res)=>{
       // }
 })
 
-//Delete post 
+//Delete post => /api/post/delete/post/:id
 router.delete("/delete/post/:id" , verifyToken , async(req , res)=>{
       try {
             const post = await Post.findById(req.params.id);
@@ -149,7 +147,7 @@ router.delete("/delete/post/:id" , verifyToken , async(req , res)=>{
       }
 })
 
-/// Get a Following user
+/// Get a Following user => /api/post/following/:id
 router.get("/following/:id" , async(req , res)=>{
       try {
             const user = await User.findById(req.params.id);
@@ -171,7 +169,7 @@ router.get("/following/:id" , async(req , res)=>{
       }
 })
 
-/// Get a Following user
+/// Get a Follower user => /api/post/followers/:id
 router.get("/followers/:id" , async(req , res)=>{
       try {
             const user = await User.findById(req.params.id);

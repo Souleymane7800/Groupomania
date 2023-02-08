@@ -1,7 +1,3 @@
-/* .PostContainer {
-
-} */
-
 .SubPostContainer{
       width: 93%;
       background-color: white;
@@ -76,5 +72,4 @@
       .SubPostContainer {
             margin-left: 10px;
       }
-
 }

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import ads from "../Images/ads.jpg";
 import addFriends from "../Images/add-user.png";
-// import image1 from "../Images/image1.jpg";
-// import image2 from "../Images/image2.jpg";
 import UserToFollow from "../Images/afterFollowImg.png"
 
 export default function Follow({ userDetails }) {

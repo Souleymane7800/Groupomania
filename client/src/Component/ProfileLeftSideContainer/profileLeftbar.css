@@ -1,6 +1,5 @@
 .ProfileLeftbar{
       flex: 1;
-
 }
 
 .NotificationsContainer{
@@ -16,20 +15,19 @@
 .NotificationsContainer>p{
       text-decoration: none;
 }
+
 .ProfilePageImage{
       width: 60px;
       border-radius: 50%;
       height: 60px;
       object-fit: cover;
       margin-left: 10px;
-
 }
+
 .ProfilePageCover{
       width: 270px;
       height: 100px;
       object-fit: cover;
-
-
 }
 
 .friendImage{

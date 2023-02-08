@@ -41,33 +41,7 @@ export default function Leftbar() {
 
   return (
     <div className="Leftbar">
-            {/* <div className="NotificationsContainer">
-                  <div style={{ display: "flex", justifyContent: "space-around" }}>
-                        <p>Notifications</p>
-                        <p style={{ color: "#aaa"}}>Tout voir</p>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", marginTop:+13 }}>
-                        <img src={`${image}`} className="notificationImg" alt="" />
-                        <p style={{ marginLeft: "10px", color:"#aaa", fontSize:13 }}>Bobb a aimé votre post !</p>
-                        <img src={`${image}`} className="likeimage" alt="" />
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", marginTop:+13 }}>
-                        <img src={`${image}`} className="notificationImg" alt="" />
-                        <p style={{ marginLeft: "10px", color:"#aaa", fontSize:13, textAlign:"start" }}>Dono a commencer à vous suivre !</p>
-                        <img src={`${image1}`} className="followingUserImage" alt="" />
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", marginTop:+13 }}>
-                        <img src={`${image}`} className="notificationImg" alt="" />
-                        <p style={{ marginLeft: "10px", color:"#aaa", fontSize:13 }}>Bobb a aimé votre post !</p>
-                        <img src={`${image}`} className="likeimage" alt="" />
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", marginTop:+13 }}>
-                        <img src={`${image}`} className="notificationImg" alt="" />
-                        <p style={{ marginLeft: "10px", color:"#aaa", fontSize:13 }}>Bobb a aimé votre post !</p>
-                        <img src={`${image}`} className="likeimage" alt="" />
-                  </div>
-
-            </div> */}
+            
             <div className="NotificationsContainer">
                   <div style={{ display: "flex", justifyContent: "space-around" }}>
                         <p style={{ marginLeft: "-20px" }}>Explores</p>

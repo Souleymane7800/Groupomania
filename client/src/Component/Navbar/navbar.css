@@ -73,13 +73,11 @@
 @media only screen and (max-width: 767px) {
       .mainNavbar {
             display: flex;
-            width: 82%;
             border-radius: 0;
-            
       }
-      /* .searchNavbar {
-            margin-left: 10px;
-      } */
+      .searchNavbar {
+            display: none;
+      }
       .searchInputContainer{
             width: 180px;
             margin-top: 2px;
@@ -95,7 +93,6 @@
             font-size: 11px;
             padding: 0;
             width: 10pc;
-            
       }
       .IconsContainer {
             height: 32px;
@@ -128,22 +125,5 @@
             width: 25px;
             height: 25px;
       }
-      /* .mainPostContainer {
-            width: 100%;
-      }
-      .PostContainer {
-            width: 100%;
-      }
-      .ComponentContainer {
-            width: 95%;
-      } */
-      /* .SubPostContainer>div>img {
-            width: 300px;
-            height: 250px;
-      }
-      .ContentUploadContainer>div>div>img {
-            width: 300px;
-            height: 250px;
-      } */
 }
 

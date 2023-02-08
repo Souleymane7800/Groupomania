@@ -52,8 +52,6 @@ export default function Post({detail}) {
     }
   }
 
-  // console.log(user)
-
   return (
     <div className="PostContainer">
       <div className="SubPostContainer">

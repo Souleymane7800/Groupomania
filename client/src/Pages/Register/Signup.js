@@ -53,14 +53,11 @@ export default function Signup() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           signup(dispatch, {email, password, username, profile: downloadURL});
           alert("Votre profile a bien été créer, veuillez vous connecter !")
-          // window.location.reload(true)
-          // window.localStorage.clear();
           navigate("/login",  {replace: true})
         })
         });
   }
   
-  // console.log(userDetails?.Status)
   // navigate("/login")
   return (
     <div className="mainContainerForSignup">

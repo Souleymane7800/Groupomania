@@ -1,6 +1,5 @@
 .ContentUploadContainer{
       width: 94%;
-      /* height: 20vh; */
       background-color: white;
       margin: auto;
       margin-top: 20px;
@@ -20,7 +19,6 @@
       height: 40px;
       border-radius: 50%;
       margin-left: 10px;
-      
 }
 
 .icons{
@@ -44,17 +42,7 @@
 
 /* Mobile */
 @media only screen and (max-width: 767px) {
-      
-      
-      /* .mainPostContainer {
-            width: 100%;
-      }
-      .PostContainer {
-            width: 100%;
-      }
-      .ComponentContainer {
-            width: 95%;
-      }*/
+
       .ContentUploadContainer {
             width: 94%;
             margin-left: 16px;
