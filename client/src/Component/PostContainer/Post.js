@@ -33,7 +33,6 @@ export default function Post({post}) {
   }, [post.user])
 
   const userId = users.others._id;
-  // let postTitle = post.title;
   let isAdmin = users.others.isAdmin;
   let postId = post.id
   let posterId = post.user;
@@ -46,15 +45,15 @@ export default function Post({post}) {
   
   const accessToken = users.accessToken;
   const [ Like, setLike ] = useState([post.like.includes(userId) ? anotherlikeicon : LikeIcon]);
-  const [ count, setCount ] = useState(post.like.length);
+
+  const [ count, setCount ] = useState(post.like.length +1);
   const [ Comments, setComments ] = useState(post.comments);
   const [ commentWriting, setCommentWriting ] = useState("");
   const [ show, setShow ] = useState(false);
 
   // Ajouter ou enlever son like au click
   const handleLike = async () => {
-    if(Like === LikeIcon) {
-
+    if(Like !== LikeIcon ) {
       await fetch(`http://localhost:5000/api/post/${post._id}/like`,{
         method: "PUT",
         headers:{
@@ -62,21 +61,21 @@ export default function Post({post}) {
           token: accessToken
         }
       })
-      setLike(anotherlikeicon);
-      setCount(count + 1);
-
-    } else {
-
-      await fetch(`http://localhost:5000/api/post/${post._id}/like`,{
-        method: "PUT",
-        headers:{
-          "Content-Type": "application/Json",
-          token: accessToken
-        }
-      })
+      setCount(post.like.length);
       setLike(LikeIcon);
-      setCount(count - 1);
-      // window.location.reload(true)
+
+
+    } else if (Like === LikeIcon) {
+      console.log("LIKE2", Like)
+      await fetch(`http://localhost:5000/api/post/${post._id}/like`,{
+        method: "PUT",
+        headers:{
+          "Content-Type": "application/Json",
+          token: accessToken
+        }
+      })
+      setCount(post.like.length +1);
+      setLike(anotherlikeicon);
     }
   };
 
@@ -125,9 +124,9 @@ export default function Post({post}) {
               <p style={{ fontSize: "11px", textAlign: "start", marginLeft:5, marginTop:-13, color: "#aaa" }}>{`${user.username}`}</p>
             </div>
 
-            <img src={`${Moreoption}`} className="moreIcons" alt="" />
+            {/* <img src={`${Moreoption}`} className="moreIcons" alt="" /> */}
           </div>
-          {/* test */}
+          {/* Image de profil du user qui a mis un commentaire  */}
           <p style={{ textAlign: "start", width: "96%", marginLeft:10, marginTop:0 }}>{post.title}</p>
           {post.image !== '' ? 
             <img src={`${post.image}`} className="PostImages" alt="" /> : post.video !== '' 
@@ -145,12 +144,9 @@ export default function Post({post}) {
                 <p style={{ marginLeft: "6px" }}>{Comments.length} Comments</p>
               </div>
             </div>
+            {/* Bouton Edit */}
             <div className="editIcon" title="Modifier">
-                {/* <img src={`${ShareIcon}`} className="iconsForPost" alt='' />
-                <p style={{ marginLeft: "6px" }}>Partager</p> */}
                 {displayButtons && 
-                  // <div className="button-container">
-                    // <div>
                       <Link to={"/update/post/" + post._id} state={{postId: postId}} >
                         <img className="iconsForPost" src={editicon} alt="edit" />
                       </Link>
