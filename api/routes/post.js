@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
-const { verifyToken } = require("./verifytoken.js");
+const { verifyToken } = require("./verifytoken");
 
 //Create Post => /api/post/user/post
 router.post("/user/post" , verifyToken , async(req , res, next)=>{
@@ -64,7 +64,7 @@ router.put("/update/post/:id" , verifyToken , async(req ,res)=>{
 
             post = await Post.findByIdAndUpdate(req.params.id, {
                   $set: req.body
-            }, { returnDocument: "after" })
+            }, { new: true })
             let updatepost = await post.save();
             res.status(200).json(updatepost);
       } catch (error) {
@@ -140,7 +140,7 @@ router.delete("/delete/post/:id" , verifyToken , async(req , res)=>{
                   return res.status(200).json("Votre post a bien été supprimé !")
             // }
             // else{
-                  return res.status(400).json("Vous n\'êtes pas autorisé à supprimer ce post !")
+                  // return res.status(400).json("Vous n\'êtes pas autorisé à supprimer ce post !")
             // }
       } catch (error) {
             return res.status(500).json("Une erreur est survenue !")

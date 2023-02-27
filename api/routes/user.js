@@ -81,6 +81,7 @@ router.post("/login",
                   id: user._id,
                   username: user.username
             }, process.env.JWT_TOKEN_KEY);
+
             // On cache le password aux autres utilisateurs
             const {password, ...others} = user._doc
             res.status(200).json({others, accessToken});
@@ -89,7 +90,6 @@ router.post("/login",
       }
       
 })
-
 
 // Following => /api/user/following/:id
 router.put("/following/:id", verifyToken, async(req, res) => {

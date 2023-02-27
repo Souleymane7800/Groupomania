@@ -9,6 +9,7 @@ import { logout } from '../ReduxContainer/userReducer';
 import logo from "../../Component/Images/logo.png";
 import logout1 from "../Images/logout-1.png";
 import logoutOver from "../Images/logout-2.png";
+import  Avatar  from "../../Component/Images/profile.png";//test
 
 export default function Navbar() {
       const userDetails = useSelector((state) => state.user);
@@ -43,6 +44,7 @@ export default function Navbar() {
             <Link to={`/Profile/${id}`} style={{textDecoration:"none"}}>
                   <div style={{ display: "flex", alignItems: "center" }}>
                         <img src={`${user.others.profile}`} className="ProfileImage" alt="" />
+                        {/* <img src={`${Avatar}`} className="profileImage" alt='' />  */}
                         <p style={{ marginLeft: "5px"}}>{user.others.username}</p>
                   </div>
             </Link>

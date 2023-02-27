@@ -6,6 +6,7 @@ import VideoIcon from "../Images/video.png";
 import { useSelector } from 'react-redux';
 import app from '../../firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import  avatar  from "../../Component/Images/profile.png";//test
 
 
 export default function ContentPost() {
@@ -13,7 +14,7 @@ export default function ContentPost() {
   const userDetails = useSelector((state) => state.user);
   let user = userDetails?.user;
   console.log(user);
-  // let id = user?.others?._id;
+  let id = user?.others?._id;
   const [ file, setFile ] = useState(null);
   const [ file2, setFile2 ] = useState(null);
   const [ title, setTitle ] = useState('');
@@ -139,16 +140,15 @@ export default function ContentPost() {
   return (
     <div>
       <div className="ContentUploadContainer">
-        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-          <img src={`${user?.others?.profile}`} className="profileImage" alt='' />
-          <input type="text" className="contentWritingpart" placeholder={"A quoi pensez-vous " + user?.others?.username + " ?"} onChange={(e) => setTitle(e.target.value)} />
+      <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+        <img src={`${user?.others?.profile}`} className="profileImage" alt='' /> 
+        <input type="text" className="contentWritingpart" placeholder={"A quoi pensez-vous " + user?.others?.username + " ?"} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="imagePrev" style={{ marginLeft: "10px" }}>
           {imagePrev !== null ? <img src={imagePrev}  alt="" /> : videoPrev !== null ? <video className="PostImages" width="500" height="350" controls><source src={videoPrev} type="video/mp4"/></video> 
             : ''
           }
           <div style={{ display:"flex", justifyContent:"space-between" }}>
-          
           <div>
             <label htmlFor="file">
               <img src={`${imageIcon}`} className="icons" alt="" />

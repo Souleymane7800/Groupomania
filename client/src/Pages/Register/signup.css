@@ -80,6 +80,21 @@
       background-color: #FD2D01;
 }
 
+.imageDefault {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+}
+
+.imageDefault > img {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      margin-left: 35px;
+}
+
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
       

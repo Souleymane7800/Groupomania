@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import app from '../../firebase';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL,  } from "firebase/storage";
 import imageIcon from "../../Component/Images/gallery.png";
 import emojiIcon from "../../Component/Images/cat-face.png";
 import VideoIcon from "../../Component/Images/video.png";
@@ -61,20 +61,17 @@ function UpdatePost() {
   // Mise à jour d'un post
   const editPost = (e) => {
     e.preventDefault();
-    // if (currentImage) return null;
-    if (currentImage !== null) {
-      console.log("currentimageeeeeeeeeeee", currentImage)
-      const fileName = new Date().getTime() + currentImage?.name;
-      console.log("filenameeeeeeee", fileName)
+
+
+      const fileName = new Date().getTime() + currentImage?.name ;
+      console.log("filenameeeeeeee111111111", currentImage)
       const storage = getStorage(app);
       const StorageRef = ref(storage, fileName);
-      // const StorageRef = ref(storage, currentImage);//test title mis a jour mais plus d'image
 
-
-      // Stockage des images ou vidéos sur Firebase
+          // Stockage des images ou vidéos sur Firebase
       const uploadTask = uploadBytesResumable(StorageRef, currentImage);
 
-      uploadTask.on('state_changed',
+    uploadTask.on('state_changed',
         (snapshot) => {
           // Observe state change events such as progress, pause, and resume
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -88,7 +85,7 @@ function UpdatePost() {
               console.log('Upload is running');
               break;
             default:
-            // nothing
+              break;
           }
         },
         (error) => {
@@ -113,75 +110,127 @@ function UpdatePost() {
               })
           });
         }
-      );
-    } else if (currentVideo !== null) {
-      const fileName = new Date().getTime() + currentVideo?.name;
-      const storage = getStorage(app);
-      const StorageRef = ref(storage, fileName);
+    )
+    // if (currentImage) return null;
+    // if (currentImage !== null || currentImage) {
+    //   console.log("currentimageeeeeeeeeeee", )
+    //   const fileName = new Date().getTime() + currentImage?.name ;
+    //   console.log("filenameeeeeeee111111111", currentImage)
+    //   const storage = getStorage(app);
+    //   const StorageRef = ref(storage, fileName);
+    //   // const StorageRef = ref(storage, currentImage);//test title mis a jour mais plus d'image
 
-      // Stockage des images ou vidéos sur Firebase
-      const uploadTask = uploadBytesResumable(StorageRef, currentVideo);
 
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
-              break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-            default:
-            // nothing
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-        },
-        () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/JSON",
-                token: accessToken
-              },
-              body: JSON.stringify({ title: currentTitle, video: downloadURL, image: '' })
-            })
-              .then((data) => {
-                if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
-                  navigate("/")
-                }
-              })
-          });
-        }
-      );
-    } else {
-      fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/JSON",
-          token: accessToken
-        },
-        body: JSON.stringify({ title: currentTitle, video: '', image: '' })
-      })
-        .then((data) => {
-          if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
-            navigate("/")
-          }
-        })
-    }
+    //   // Stockage des images ou vidéos sur Firebase
+    //   const uploadTask = uploadBytesResumable(StorageRef, currentImage);
+
+    //   uploadTask.on('state_changed',
+    //     (snapshot) => {
+    //       // Observe state change events such as progress, pause, and resume
+    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //       console.log('Upload is ' + progress + '% done');
+    //       switch (snapshot.state) {
+    //         case 'paused':
+    //           console.log('Upload is paused');
+    //           break;
+    //         case 'running':
+    //           console.log('Upload is running');
+    //           break;
+    //         default:
+    //         // nothing
+    //       }
+    //     },
+    //     (error) => {
+    //       // Handle unsuccessful uploads
+    //     },
+    //     () => {
+    //       // Handle successful uploads on complete
+    //       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //         fetch(`http://localhost:5000/api/post/update/post/${id}`, {
+    //           method: "PUT",
+    //           headers: {
+    //             "Content-Type": "application/JSON",
+    //             token: accessToken
+    //           },
+    //           body: JSON.stringify({ title: currentTitle, image: downloadURL, video: '' })
+    //         })
+    //           .then((data) => {
+    //             if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
+    //               navigate("/")
+    //             }
+    //           })
+    //       });
+    //     }
+    //   );
+    // } else if (currentVideo !== null) {
+    //   const fileName = new Date().getTime() + currentVideo?.name;
+    //   const storage = getStorage(app);
+    //   const StorageRef = ref(storage, fileName);
+
+    //   // Stockage des images ou vidéos sur Firebase
+    //   const uploadTask = uploadBytesResumable(StorageRef, currentVideo);
+
+    //   uploadTask.on('state_changed',
+    //     (snapshot) => {
+    //       // Observe state change events such as progress, pause, and resume
+    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //       console.log('Upload is ' + progress + '% done');
+    //       switch (snapshot.state) {
+    //         case 'paused':
+    //           console.log('Upload is paused');
+    //           break;
+    //         case 'running':
+    //           console.log('Upload is running');
+    //           break;
+    //         default:
+    //         // nothing
+    //       }
+    //     },
+    //     (error) => {
+    //       // Handle unsuccessful uploads
+    //     },
+    //     () => {
+    //       // Handle successful uploads on complete
+    //       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //         fetch(`http://localhost:5000/api/post/update/post/${id}`, {
+    //           method: "PUT",
+    //           headers: {
+    //             "Content-Type": "application/JSON",
+    //             token: accessToken
+    //           },
+    //           body: JSON.stringify({ title: currentTitle, video: '', image: downloadURL})
+    //         })
+    //           .then((data) => {
+    //             if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
+    //               navigate("/")
+    //             }
+    //           })
+    //       });
+    //     }
+    //   );
+    // } else {
+    //   fetch(`http://localhost:5000/api/post/update/post/${id}`, {
+    //     method: "PUT",
+    //     headers: {
+    //       "Content-Type": "application/JSON",
+    //       token: accessToken
+    //     },
+    //     body: JSON.stringify({ title: currentTitle, video: '', image: '' })
+    //   })
+    //     .then((data) => {
+    //       if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
+    //         navigate("/")
+    //       }
+    //     })
+    // }
   }
 
   // Supprimer un post
   async function deletePost() {
-    // if (posterId === userId ){
     try {
       let res = await fetch(`http://localhost:5000/api/post/delete/post/${id}`, {
         method: "DELETE",
@@ -189,8 +238,6 @@ function UpdatePost() {
           "Content-Type": "application/json",
           token: accessToken
         },
-        // body:
-        // JSON.stringify({title:currentTitle, video:currentVideo, image:currentImage}),
       })
 
       await res.json()
@@ -211,7 +258,7 @@ function UpdatePost() {
           <textarea type="text"
             placeholder={currentTitle}
             onChange={changeTitle}
-          // onChange={(e) => [changeTitle(e.target.value)]}
+
           />
           <div style={{ marginLeft: "10px" }}></div>
           {currentVideo || videoPrev || imagePrev || currentImage !== null ?
@@ -219,8 +266,6 @@ function UpdatePost() {
               ? <video className="PostImages" width="500" height="350" controls><source src={`${videoPrev || currentVideo}`} type="video/mp4" /></video>
               : ''
           }
-          {/* <img src={`${currentImage}`} className="PostImages" onChange={changeImage} style={{width:"250px", height:"200px"}} alt='' /> */}
-          {/* <img src={`${user?.others?.profile}`} className="profileImage" alt='' /> */}
           <div>
 
             <label htmlFor="file">

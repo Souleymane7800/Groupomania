@@ -32,7 +32,6 @@ export default function MainPost() {
 
         })
         )
-        // setPost(res.data);
       } catch (error) {
         
       }
