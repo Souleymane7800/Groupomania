@@ -9,7 +9,7 @@ import "./profile.css"
 export default function Profile() {
   const userDetails = useSelector((state) => state.user);
   let user = userDetails.user
-  console.log(user)
+  // console.log(user)
   return (
     <div className="ProfileContainer">
       <Navbar />

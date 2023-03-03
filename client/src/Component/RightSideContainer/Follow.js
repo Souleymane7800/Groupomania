@@ -7,9 +7,9 @@ import UserToFollow from "../Images/afterFollowImg.png"
 export default function Follow({ userDetails }) {
       const userDetail = useSelector((state) => state.user);
       let user = userDetail?.user
-      console.log(user);
+      // console.log(user);
       let id = user?.others?._id;
-      console.log(id);
+      // console.log(id);
 
       const accessToken = user?.accessToken;
       

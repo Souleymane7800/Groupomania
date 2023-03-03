@@ -14,7 +14,7 @@ import  Avatar  from "../../Component/Images/profile.png";//test
 export default function Navbar() {
       const userDetails = useSelector((state) => state.user);
       let user = userDetails.user
-      console.log(user);
+      // console.log(user);
       let id = user?.others?._id;
       
       const dispatch = useDispatch();

@@ -14,11 +14,11 @@ import { useSelector } from 'react-redux';
 export default function Leftbar() {
       const userDetails = useSelector((state) => state.user);
       let user = userDetails.user
-      console.log(user);
+      // console.log(user);
       let id = user?.others?._id;
 
       const accessToken = user.accessToken;
-      console.log(accessToken)
+      // console.log(accessToken)
       
       const [post, setPost] = useState([]);
       useEffect(() => {
@@ -37,7 +37,7 @@ export default function Leftbar() {
             getPost();
       }, [id, accessToken])
 
-      console.log(post);
+      // console.log(post);
 
   return (
     <div className="Leftbar">
@@ -50,7 +50,6 @@ export default function Leftbar() {
                   <div>
                         {post.map((item) => (
                               [item.image === '' ? '' : <img src={`${item.image}`} className="exploreImage" alt="" /> ]
-                                    
                         ))}
                   </div>
             </div>

@@ -21,7 +21,6 @@ export default function Post({ post }) {
       try {
         const res = await axios.get(`http://localhost:5000/api/user/post/user/details/${post.user}`)
         setUser(res.data);
-        console.log("ressssssssdataaaa", res.data)
       } catch (error) {
         console.log("Une erreur est survenue !")
       }
@@ -70,8 +69,8 @@ export default function Post({ post }) {
           token: accessToken
         }
       })
-      setLike(LikeIcon);
       setCount((count) => count - 1);
+      setLike(LikeIcon);
     }
   };
 

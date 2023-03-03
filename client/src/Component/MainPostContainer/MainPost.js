@@ -10,11 +10,11 @@ export default function MainPost() {
 
   const userDetails = useSelector((state) => state.user);
   let user = userDetails.user
-  console.log(user);
+  // console.log(user);
   let id = user?.others?._id;
 
       const accessToken = user.accessToken;
-      console.log(accessToken)
+      // console.log(accessToken)
 
   
   const [post, setPost] = useState([]);
@@ -39,7 +39,7 @@ export default function MainPost() {
     getPost();
   }, [id, accessToken])
 
-  console.log(post);
+  // console.log(post);
 
   return (
     <div className="mainPostContainer">

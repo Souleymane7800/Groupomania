@@ -25,7 +25,7 @@ export default function ProfileRightbar() {
             getFollowing();
       }, [id])
 
-      console.log(FollowingUser)
+      // console.log(FollowingUser)
 
 
       const [ users, setUsers ] = useState([]);
@@ -41,7 +41,7 @@ export default function ProfileRightbar() {
         getUser();
       }, [idForSuggest])
     
-      console.log(users)
+      // console.log(users)
 
   return (
     <div className="ProfileRightbar">

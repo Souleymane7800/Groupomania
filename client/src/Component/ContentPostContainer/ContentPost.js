@@ -13,7 +13,7 @@ export default function ContentPost() {
 
   const userDetails = useSelector((state) => state.user);
   let user = userDetails?.user;
-  console.log(user);
+  // console.log(user);
   let id = user?.others?._id;
   const [ file, setFile ] = useState(null);
   const [ file2, setFile2 ] = useState(null);
@@ -23,7 +23,7 @@ export default function ContentPost() {
   const [ videoPrev, setVideoPrev ] = useState(null);
 
   const accessToken = user.accessToken;
-  console.log(file?.name)
+  // console.log(file?.name)
 
   // Création et enregistrement d'un post
   const handlePost = (e) => {

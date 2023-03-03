@@ -6,13 +6,12 @@ import Profile from './Pages/Profile/Profile';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import UpdatePost from './Pages/UpdatePost/UpdatePost';
-// import Post from './Component/PostContainer/Post';
 
 
 function App() {
   const userDetails = useSelector((state) => state.user);
   let user = userDetails.user
-  // console.log(user)
+
   return (
     <div className="App">
       <BrowserRouter>

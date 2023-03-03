@@ -26,7 +26,7 @@ export default function Rightbar() {
     getUser();
   }, [id])
 
-  console.log(users)
+  // console.log(users)
 
   return (
     <div className="rightbar">

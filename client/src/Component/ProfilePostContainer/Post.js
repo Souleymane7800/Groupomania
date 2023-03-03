@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 export default function Post({detail}) {
-  console.log(detail);
+  // console.log(detail);
   
   const [ Comments, setComments ] = useState([]);
   const [ commentWriting, setCommentWriting ] = useState("");
@@ -27,7 +27,7 @@ export default function Post({detail}) {
     getUser();
   }, [detail.user])
 
-  console.log(user);
+  // console.log(user);
 
   const addComment = () => {
     const comment = {
@@ -42,7 +42,7 @@ export default function Post({detail}) {
     addComment();
   }
 
-  console.log(Comments)
+  // console.log(Comments)
   // Câcher ou montrer les commentaires au click sur commentaires
   const handleShow = () => {
     if(show === false){
@@ -78,10 +78,7 @@ export default function Post({detail}) {
                 <p style={{ marginLeft: "6px" }}>{detail.comments.length} Comments</p>
               </div>
             </div>
-            {/* <div style={{ display: "flex", alignItems: "center", marginLeft:200, cursor: "pointer" }}>
-                <img src={`${ShareIcon}`} className="iconsForPost" alt='' />
-                <p style={{ marginLeft: "6px" }}>Partager</p>
-              </div> */}
+
           </div>
           {show === true ?
           <div style={{ padding: "10px" }}>

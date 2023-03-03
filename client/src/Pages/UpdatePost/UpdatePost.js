@@ -38,7 +38,6 @@ function UpdatePost() {
         })
         const currentPost = await response.json()
         setCurrentPost(currentPost)
-        console.log("Curenntpostttttttttttttttt", currentPost) //test
         setCurrentTitle(currentPost.title)
         setCurrentImage(currentPost.image)
         setCurrentVideo(currentPost.video)
@@ -51,7 +50,6 @@ function UpdatePost() {
 
   const changeTitle = e => {
     setCurrentTitle(e.target.value);
-    console.log("etargetttttttvalueeeeee", e.target.value)
   }
 
   const changeImage = e => {
@@ -61,17 +59,17 @@ function UpdatePost() {
   // Mise à jour d'un post
   const editPost = (e) => {
     e.preventDefault();
-
-
+    
       const fileName = new Date().getTime() + currentImage?.name ;
-      console.log("filenameeeeeeee111111111", currentImage)
-      const storage = getStorage(app);
-      const StorageRef = ref(storage, fileName);
+      if (fileName !== null && currentImage?.name) {
 
-          // Stockage des images ou vidéos sur Firebase
-      const uploadTask = uploadBytesResumable(StorageRef, currentImage);
-
-    uploadTask.on('state_changed',
+        const storage = getStorage(app);
+        const StorageRef = ref(storage, fileName);
+        
+        // Stockage des images ou vidéos sur Firebase
+        const uploadTask = uploadBytesResumable(StorageRef, currentImage);
+        
+        uploadTask.on('state_changed',
         (snapshot) => {
           // Observe state change events such as progress, pause, and resume
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -81,152 +79,51 @@ function UpdatePost() {
             case 'paused':
               console.log('Upload is paused');
               break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-        },
-        () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/JSON",
-                token: accessToken
+              case 'running':
+                console.log('Upload is running');
+                break;
+                default:
+                  break;
+                }
               },
-              body: JSON.stringify({ title: currentTitle, image: downloadURL, video: '' })
-            })
+              (error) => {
+                // Handle unsuccessful uploads
+              },
+              () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  fetch(`http://localhost:5000/api/post/update/post/${id}`, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/JSON",
+                      token: accessToken
+                    },
+                    body: JSON.stringify({ title: currentTitle, image: downloadURL, video: '' })
+                  })
+                  .then((data) => {
+                    if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
+                      navigate("/")
+                    }
+                  })
+                });
+              }
+              )
+            } else {
+              fetch(`http://localhost:5000/api/post/update/post/${id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/JSON",
+                  token: accessToken
+                },
+                body: JSON.stringify({ title: currentTitle,image: currentPost.image, video: '' })
+              })
               .then((data) => {
                 if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
                   navigate("/")
                 }
               })
-          });
-        }
-    )
-    // if (currentImage) return null;
-    // if (currentImage !== null || currentImage) {
-    //   console.log("currentimageeeeeeeeeeee", )
-    //   const fileName = new Date().getTime() + currentImage?.name ;
-    //   console.log("filenameeeeeeee111111111", currentImage)
-    //   const storage = getStorage(app);
-    //   const StorageRef = ref(storage, fileName);
-    //   // const StorageRef = ref(storage, currentImage);//test title mis a jour mais plus d'image
-
-
-    //   // Stockage des images ou vidéos sur Firebase
-    //   const uploadTask = uploadBytesResumable(StorageRef, currentImage);
-
-    //   uploadTask.on('state_changed',
-    //     (snapshot) => {
-    //       // Observe state change events such as progress, pause, and resume
-    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //       console.log('Upload is ' + progress + '% done');
-    //       switch (snapshot.state) {
-    //         case 'paused':
-    //           console.log('Upload is paused');
-    //           break;
-    //         case 'running':
-    //           console.log('Upload is running');
-    //           break;
-    //         default:
-    //         // nothing
-    //       }
-    //     },
-    //     (error) => {
-    //       // Handle unsuccessful uploads
-    //     },
-    //     () => {
-    //       // Handle successful uploads on complete
-    //       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //         fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-    //           method: "PUT",
-    //           headers: {
-    //             "Content-Type": "application/JSON",
-    //             token: accessToken
-    //           },
-    //           body: JSON.stringify({ title: currentTitle, image: downloadURL, video: '' })
-    //         })
-    //           .then((data) => {
-    //             if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
-    //               navigate("/")
-    //             }
-    //           })
-    //       });
-    //     }
-    //   );
-    // } else if (currentVideo !== null) {
-    //   const fileName = new Date().getTime() + currentVideo?.name;
-    //   const storage = getStorage(app);
-    //   const StorageRef = ref(storage, fileName);
-
-    //   // Stockage des images ou vidéos sur Firebase
-    //   const uploadTask = uploadBytesResumable(StorageRef, currentVideo);
-
-    //   uploadTask.on('state_changed',
-    //     (snapshot) => {
-    //       // Observe state change events such as progress, pause, and resume
-    //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //       console.log('Upload is ' + progress + '% done');
-    //       switch (snapshot.state) {
-    //         case 'paused':
-    //           console.log('Upload is paused');
-    //           break;
-    //         case 'running':
-    //           console.log('Upload is running');
-    //           break;
-    //         default:
-    //         // nothing
-    //       }
-    //     },
-    //     (error) => {
-    //       // Handle unsuccessful uploads
-    //     },
-    //     () => {
-    //       // Handle successful uploads on complete
-    //       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //         fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-    //           method: "PUT",
-    //           headers: {
-    //             "Content-Type": "application/JSON",
-    //             token: accessToken
-    //           },
-    //           body: JSON.stringify({ title: currentTitle, video: '', image: downloadURL})
-    //         })
-    //           .then((data) => {
-    //             if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
-    //               navigate("/")
-    //             }
-    //           })
-    //       });
-    //     }
-    //   );
-    // } else {
-    //   fetch(`http://localhost:5000/api/post/update/post/${id}`, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/JSON",
-    //       token: accessToken
-    //     },
-    //     body: JSON.stringify({ title: currentTitle, video: '', image: '' })
-    //   })
-    //     .then((data) => {
-    //       if (window.confirm("Vous-vous vraiment modifier votre post ?")) {
-    //         navigate("/")
-    //       }
-    //     })
-    // }
+            }
   }
 
   // Supprimer un post
@@ -273,14 +170,12 @@ function UpdatePost() {
               <input type="file" name="file" id="file" style={{ display: "none" }}
                 accept=".png,.jpeg,.jpg"
                 onChange={(e) => [setCurrentImage(e.target.files[0]), setImagePrev(URL.createObjectURL(e.target.files[0]))]}
-              //  onChange={(e) => setFile(e.target.files[0])}
               />
             </label>
             <img src={`${emojiIcon}`} className="icons" alt="" />
             <label htmlFor="file2">
               <img src={`${VideoIcon}`} className="icons" alt="" />
               <input type="file" name="file2" id="file2" style={{ display: "none" }}
-                //  accept=".png,.jpeg,.jpg" 
                 onChange={(e) => [setCurrentVideo(e.target.files[0]), setVideoPrev(URL.createObjectURL(e.target.files[0]))]}
               />
             </label>

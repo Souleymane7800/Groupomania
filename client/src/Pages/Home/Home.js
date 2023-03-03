@@ -9,7 +9,7 @@ import "./home.css"
 export default function Home() {
   const userDetails = useSelector((state) => state.user);
   let user = userDetails.user
-  console.log(user)
+  // console.log(user)
   return (
     <div className="home">
       <Navbar />
